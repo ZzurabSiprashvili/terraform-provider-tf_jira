@@ -1,0 +1,10 @@
+provider:
+  name: tf_jira
+resources:
+  group:
+    create:
+      path: /rest/api/3/group
+      method: POST
+    read:
+      path: /rest/api/3/group/bulk
+      method: GET

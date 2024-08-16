@@ -1,0 +1,287 @@
+{
+	"provider": {
+		"name": "tf_jira"
+	},
+	"resources": [
+		{
+			"name": "group",
+			"schema": {
+				"attributes": [
+					{
+						"name": "name",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "The name of the group."
+						}
+					},
+					{
+						"name": "expand",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Expand options that include additional group details in the response."
+						}
+					},
+					{
+						"name": "group_id",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*."
+						}
+					},
+					{
+						"name": "self",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The URL for these group details."
+						}
+					},
+					{
+						"name": "users",
+						"single_nested": {
+							"computed_optional_required": "computed",
+							"attributes": [
+								{
+									"name": "endindex",
+									"int64": {
+										"computed_optional_required": "computed",
+										"description": "The index of the last item returned on the page."
+									}
+								},
+								{
+									"name": "items",
+									"list_nested": {
+										"computed_optional_required": "computed",
+										"nested_object": {
+											"attributes": [
+												{
+													"name": "account_id",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*."
+													}
+												},
+												{
+													"name": "account_type",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app' (application user) or 'customer' (Jira Service Desk customer user)"
+													}
+												},
+												{
+													"name": "active",
+													"bool": {
+														"computed_optional_required": "computed",
+														"description": "Whether the user is active."
+													}
+												},
+												{
+													"name": "avatar_urls",
+													"single_nested": {
+														"computed_optional_required": "computed",
+														"attributes": [
+															{
+																"name": "x16",
+																"string": {
+																	"computed_optional_required": "computed",
+																	"description": "The URL of the item's 16x16 pixel avatar."
+																}
+															},
+															{
+																"name": "x24",
+																"string": {
+																	"computed_optional_required": "computed",
+																	"description": "The URL of the item's 24x24 pixel avatar."
+																}
+															},
+															{
+																"name": "x32",
+																"string": {
+																	"computed_optional_required": "computed",
+																	"description": "The URL of the item's 32x32 pixel avatar."
+																}
+															},
+															{
+																"name": "x48",
+																"string": {
+																	"computed_optional_required": "computed",
+																	"description": "The URL of the item's 48x48 pixel avatar."
+																}
+															}
+														],
+														"description": "The avatars of the user."
+													}
+												},
+												{
+													"name": "display_name",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "The display name of the user. Depending on the user’s privacy settings, this may return an alternative value."
+													}
+												},
+												{
+													"name": "email_address",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "The email address of the user. Depending on the user’s privacy settings, this may be returned as null."
+													}
+												},
+												{
+													"name": "key",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+													}
+												},
+												{
+													"name": "name",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+													}
+												},
+												{
+													"name": "self",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "The URL of the user."
+													}
+												},
+												{
+													"name": "time_zone",
+													"string": {
+														"computed_optional_required": "computed",
+														"description": "The time zone specified in the user's profile. Depending on the user’s privacy settings, this may be returned as null."
+													}
+												}
+											]
+										},
+										"description": "The list of items."
+									}
+								},
+								{
+									"name": "maxresults",
+									"int64": {
+										"computed_optional_required": "computed",
+										"description": "The maximum number of results that could be on the page."
+									}
+								},
+								{
+									"name": "size",
+									"int64": {
+										"computed_optional_required": "computed",
+										"description": "The number of items on the page."
+									}
+								},
+								{
+									"name": "startindex",
+									"int64": {
+										"computed_optional_required": "computed",
+										"description": "The index of the first item returned on the page."
+									}
+								}
+							],
+							"description": "A paginated list of the users that are members of the group. A maximum of 50 users is returned in the list, to access additional users append `[start-index:end-index]` to the expand request. For example, to access the next 50 users, use`?expand=users[51:100]`."
+						}
+					},
+					{
+						"name": "is_last",
+						"bool": {
+							"computed_optional_required": "computed",
+							"description": "Whether this is the last page."
+						}
+					},
+					{
+						"name": "max_results",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "The maximum number of items that could be returned."
+						}
+					},
+					{
+						"name": "next_page",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "If there is another page of results, the URL of the next page."
+						}
+					},
+					{
+						"name": "start_at",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "The index of the first item returned."
+						}
+					},
+					{
+						"name": "total",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "The number of items returned."
+						}
+					},
+					{
+						"name": "values",
+						"list_nested": {
+							"computed_optional_required": "computed",
+							"nested_object": {
+								"attributes": [
+									{
+										"name": "group_id",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*."
+										}
+									},
+									{
+										"name": "name",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "The name of the group."
+										}
+									}
+								]
+							},
+							"description": "The list of items."
+						}
+					},
+					{
+						"name": "group_name",
+						"list": {
+							"computed_optional_required": "computed_optional",
+							"element_type": {
+								"string": {}
+							},
+							"description": "The name of a group. To specify multiple names, pass multiple `groupName` parameters. For example, `groupName=administrators\u0026groupName=jira-software-users`.",
+							"validators": [
+								{
+									"custom": {
+										"imports": [
+											{
+												"path": "github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
+											}
+										],
+										"schema_definition": "listvalidator.UniqueValues()"
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "access_type",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "The access level of a group. Valid values: 'site-admin', 'admin', 'user'."
+						}
+					},
+					{
+						"name": "application_key",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "The application key of the product user groups to search for. Valid values: 'jira-servicedesk', 'jira-software', 'jira-product-discovery', 'jira-core'."
+						}
+					}
+				]
+			}
+		}
+	],
+	"version": "0.1"
+}
